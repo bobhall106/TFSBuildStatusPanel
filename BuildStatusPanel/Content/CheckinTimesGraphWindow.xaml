@@ -1,0 +1,71 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:winformchart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        xmlns:local="clr-namespace:BuildStatusPanel.Content"
+        xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" x:Class="BuildStatusPanel.Content.CheckinTimesGraphWindow"
+        mc:Ignorable="d"
+        Title="Checkin Times Chart" Height="600" Width="700"
+        Name="checkinTimesGraphsWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="checkinTimesGraphsWindow_Closing">
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Copy Chart" Click="CopyChart_Click" />
+        </ContextMenu>
+    </Window.ContextMenu>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal">
+            <Label Content="Show checkins from" Margin="3"/>
+            <DatePicker Name="FromDatePicker" ToolTip="From date" 
+                        DisplayDate="{Binding FromDate, ElementName=checkinTimesGraphsWindow, Mode=TwoWay}"
+                        SelectedDate="{Binding FromDate, ElementName=checkinTimesGraphsWindow, Mode=TwoWay}"
+                        Height="25" Margin="5"/>
+            <Label Content="until" Margin="3"/>
+            <DatePicker Name="ToDatePicker" ToolTip="To date" 
+                        DisplayDate="{Binding ToDate, Mode=TwoWay, ElementName=checkinTimesGraphsWindow}" 
+                        SelectedDate="{Binding ToDate, Mode=TwoWay, ElementName=checkinTimesGraphsWindow}" 
+                        Height="25" Margin="5"/>
+            <CheckBox Name="Is3DCheckBox" Content="3D Graph" 
+                      IsChecked="{Binding Is3D, Mode=TwoWay, ElementName=checkinTimesGraphsWindow}" 
+                      Height="25" Margin="0,10,0,0"/>
+            <CheckBox Name="IsFilesCheckBox" Content="Files" 
+                      IsChecked="{Binding IsFiles, Mode=TwoWay, ElementName=checkinTimesGraphsWindow}" 
+                      Height="25" Margin="5,10,0,0"/>
+            <CheckBox Name="IsCheckinsCheckBox" Content="Checkins" 
+                      IsChecked="{Binding IsCheckins, Mode=TwoWay, ElementName=checkinTimesGraphsWindow}" 
+                      Height="25" Margin="5,10,5,0"/>
+            <Button x:Name="RefeshButton" ToolTip="Refresh everything" Width="25" Height="25" 
+                    Click="Refesh_Click"  Margin="1" >
+                <Image Source="..\Resources\Icons\refresh.ico" />
+            </Button>
+
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+
+            <WindowsFormsHost x:Name="chartHost" MinHeight="500">
+                <winformchart:Chart x:Name="CheckinsWinformChart" Dock="Fill" >
+                    <winformchart:Chart.Series>
+                        <winformchart:Series Name="Number Of Checkins" ChartType="Column" />
+                        <winformchart:Series Name="Number Of Files" ChartType="Column" />
+                    </winformchart:Chart.Series>
+                    <winformchart:Chart.ChartAreas>
+                        <winformchart:ChartArea Name="chartArea1" BackColor="Transparent" />
+                    </winformchart:Chart.ChartAreas>
+                    <winformchart:Chart.Legends>
+                        <winformchart:Legend Name="Legend1" BackColor="Transparent" Title="Checkin time periods"/>
+                    </winformchart:Chart.Legends>
+                    <winformchart:Chart.Titles>
+                        <winformchart:Title Name="title" Text="Checkin times spread" TextStyle="Emboss" />
+                        <winformchart:Title Name="title2"/>
+                    </winformchart:Chart.Titles>
+                </winformchart:Chart>
+            </WindowsFormsHost>
+        </StackPanel>
+
+    </Grid>
+</Window>

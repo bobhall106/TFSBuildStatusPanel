@@ -1,0 +1,48 @@
+﻿<WrapPanel x:Class="BuildStatusPanel.Content.BuildDetailsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BuildStatusPanel"
+             xmlns:Content="clr-namespace:BuildStatusPanel.Content" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+           Orientation="Vertical">
+    <WrapPanel Orientation="Horizontal">
+        <Label Width="90">Build:</Label>
+        <TextBlock x:Name="BuildNumber" VerticalAlignment="Center"/>
+    </WrapPanel>
+    <WrapPanel Orientation="Horizontal">
+        <Label Width="90">Started:</Label>
+        <TextBlock x:Name="BuildStartTime" VerticalAlignment="Center"/>
+    </WrapPanel>
+    <WrapPanel Orientation="Horizontal">
+        <Label Width="90">Completed:</Label>
+        <TextBlock x:Name="BuildFinishTime" VerticalAlignment="Center"/>        
+    </WrapPanel>
+    <WrapPanel Orientation="Horizontal">
+        <Label Width="90">Requested by:</Label>
+        <TextBlock x:Name="RequestedBy" VerticalAlignment="Center"/>
+    </WrapPanel>
+    <Grid Width="300">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>        
+        <WrapPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+            <Label >Duration:</Label>
+            <TextBlock  Width="60" x:Name="BuildTimeMins" VerticalAlignment="Center"/>
+        </WrapPanel>
+        <WrapPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+            <Label>Status:</Label>
+            <TextBlock x:Name="Status" VerticalAlignment="Center"/>
+        </WrapPanel>
+        <Button HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1" Name="DropLocation" Width="120" Click="DropLocation_Click">Drop Location</Button>
+        <Button HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Name="InstallerLocation" Width="120 " Click="InstallerLocation_Click">Installer Location</Button>
+    </Grid>
+
+</WrapPanel>

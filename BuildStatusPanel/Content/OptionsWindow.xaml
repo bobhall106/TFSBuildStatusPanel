@@ -1,0 +1,81 @@
+﻿<Window x:Name="optionsWindow" x:Class="BuildStatusPanel.Content.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BuildStatusPanel.Content"
+        mc:Ignorable="d"
+        Title="Options" Height="500" Width="700" ResizeMode="CanResizeWithGrip" ShowInTaskbar="False" Topmost="True" WindowStartupLocation="CenterScreen"
+        Icon="/BuildStatusPanel;component/Resources/Icons/options.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0"  x:Name="OptionTabs">
+            <TabItem  x:Name="BasicTab" Header="Basic" ToolTip="Manage Basic Options">
+                <StackPanel x:Name="OptionsPanel" Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="TFS Server URI Path" Width="150"></Label>
+                        <TextBox x:Name="TFSServerURIPath" Text="{Binding UserSettings.TFSServerURIPath, Mode=TwoWay, ElementName=optionsWindow}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="400" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="TFS Project Name" Width="150"></Label>
+                        <ComboBox x:Name="TFSProjects" Text="{Binding UserSettings.DefaultProject, Mode=TwoWay, ElementName=optionsWindow}" Width="150" ItemsSource="{Binding ProjectNames, Mode=OneWay, ElementName=optionsWindow}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Visual Studio Path (x86)" Width="150"></Label>
+                        <TextBox x:Name="VisualStudioPath86" Text="{Binding UserSettings.VisualStudioPath86, Mode=TwoWay, ElementName=optionsWindow}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="400" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Visual Studio Path (64)" Width="150"></Label>
+                        <TextBox x:Name="VisualStudioPath64" Text="{Binding UserSettings.VisualStudioPath64, Mode=TwoWay, ElementName=optionsWindow}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="400" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Installers RootPath" Width="150"></Label>
+                        <TextBox x:Name="InstallerRootPath" Text="{Binding UserSettings.InstallerRootPath, Mode=TwoWay, ElementName=optionsWindow}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="400" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Branch Grouping Delimiter" Width="150"></Label>
+                        <TextBox x:Name="BranchGroupingDelimiter" MaxLength="1" Text="{Binding UserSettings.BranchGroupingDelimiter, Mode=TwoWay, ElementName=optionsWindow}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="20" />
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem  x:Name="FavouritesTab" Header="Favourites" ToolTip="Manage Favourites">
+                <Grid ShowGridLines="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition  Width="50" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+
+                    <ScrollViewer  Grid.Row="1" Grid.Column="0">
+                        <ListBox x:Name="AllBuildsView" SelectionMode="Extended" ItemsSource="{Binding AllBuildNames, Mode=TwoWay, ElementName=optionsWindow}">
+                        </ListBox>
+                    </ScrollViewer>
+                    <StackPanel Margin="5" Grid.Row="1" Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+                        <Button Content="&lt;-" Click="RemoveFavourite_Click" ToolTip="Remove from Favourites" />
+                        <Button Content="-&gt;" Click="AddFavourite_Click" ToolTip="Add to Favourites" />
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" Grid.Column="2">
+                        <ListBox x:Name="FavouritesBuildsView" SelectionMode="Extended" ItemsSource="{Binding FavouriteBuildNames, Mode=TwoWay, ElementName=optionsWindow}">
+                        </ListBox>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StackPanel  Grid.Row="1" x:Name="buttons" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+            </StackPanel.Resources>
+            <Button Content="OK" Width="100" Click="OK_Click" IsDefault="True" />
+            <Button Content="Cancel" Width="100" Click="Cancel_Click" IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</Window>

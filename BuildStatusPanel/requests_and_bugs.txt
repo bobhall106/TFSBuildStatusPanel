@@ -1,0 +1,25 @@
+﻿Simple list of things to keep track of what to do...
+====================================================
+
+Todo:
+(MikeV) capturing some build timings which breakdown the times of the various components in a build e.g.  Oracle Update, SQL Server Update, etc. (Mike looking at more info to scrape)
+(Bob) Code churn report concept
+(Bob) Some simple display of build errors in new tab
+(Bob) get the failed unit tests in new tab
+(Bob) show checkin times volume on graph with colour on build status at that time, so we can see volume of checkins and the effect on builds status
+(PN) schedule view of past builds
+Done:
+(SG) past builds shows anomaly running build for 300000mins(DEV and Dev-ebs-installer3-rebuild)
+(BH) Better button highlighting in left pane when focus is elsewhere
+(SA) be smarter about tfs queries based on dates, only get new data rather than everything every time
+(Bob) Add favourites concept so you can mix and match branch builds, i.e. No Deploys from different branches for QA
+^^^^^^previous relase build^^^^^^
+Bug that showed multiple duplicate runnining builds
+Bug that showed last changeset from previous build in current build
+You can now distinguish between a queued build waiting for controller and one actually doing something
+Queued builds now show differently colour to running builds
+Sorting of main list view especially Favoutites list so branches are together
+Separation of mainlist view into separate class
+Bottom left panel update on timer if is the selected running build.
+New Build Summary tab showing the live/completed build status log file
+------

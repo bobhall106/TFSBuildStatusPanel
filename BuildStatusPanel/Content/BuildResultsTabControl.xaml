@@ -1,0 +1,37 @@
+﻿<TabControl x:Class="BuildStatusPanel.Content.BuildResultsTabControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BuildStatusPanel.Content"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <TabItem x:Name="BuildSummaryTab" Header="Summary" ToolTip="The Build Summary of the selected build is shown here">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button x:Name="HTMLReportButton" Content="View HTML Report" Click="HTMLReportButton_Click" ToolTip="Open the html report"  IsEnabled="False"></Button>
+            </StackPanel>
+            <ScrollViewer x:Name="SummaryScroll" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <TextBlock x:Name="BuildSummaryText" TextWrapping="Wrap" >
+                    <TextBlock.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Copy" Click="CopySummary_Click" />
+                        </ContextMenu>
+                    </TextBlock.ContextMenu>
+                </TextBlock>
+            </ScrollViewer>
+        </Grid>
+    </TabItem>
+    <TabItem x:Name="BuildChangesetsTab" Header="Changesets" ToolTip="The changesets in the selected build are shown here">
+        <local:BuildChangesetsListView Grid.Column="2" Grid.Row="1" Margin="5,5,5,5" x:Name="BuildChangesetsView" ItemsSource="{Binding}"  >
+        </local:BuildChangesetsListView>
+    </TabItem>
+    <TabItem x:Name="UnBuiltChangesetsTab" Header="Changesets not in a Build yet" Height="23" Margin="-2.4,-2,-1.8,-1">
+        <local:BuildChangesetsListView Grid.Column="2" Grid.Row="1" Margin="5,5,5,5" x:Name="UnBuiltChangesetsView" ItemsSource="{Binding}">
+        </local:BuildChangesetsListView>
+    </TabItem>
+</TabControl>

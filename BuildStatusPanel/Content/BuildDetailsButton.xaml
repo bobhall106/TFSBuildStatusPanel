@@ -1,0 +1,20 @@
+﻿<Button x:Class="BuildStatusPanel.Content.BuildDetailsButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BuildStatusPanel"
+             xmlns:Content="clr-namespace:BuildStatusPanel.Content" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Opacity="0.75" BorderBrush="DarkGray"  FontStyle="Normal">
+    <Button.ContextMenu>
+        <ContextMenu Drop="ContextMenu_Drop">
+            <MenuItem Name="CopyDetailsMenu" Header="Copy Build Info" Click="CopyDetailsMenu_Click"/>
+            <MenuItem Name="CopyDropFolderMenu" Header="Copy Drop Folder" Click="CopyDropFolderMenu_Click"/>
+            <MenuItem Name="CopyInstallFolderMenu" Header="Copy Installer Folder" Click="CopyInstallFolderMenu_Click"/>
+            <MenuItem Name="StopBuildMenu" Header="Stop build" Click="StopBuild_Click"   />
+        </ContextMenu>
+        
+    </Button.ContextMenu>
+
+</Button>

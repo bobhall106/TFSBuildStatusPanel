@@ -1,0 +1,42 @@
+﻿<ListView x:Class="BuildStatusPanel.Content.BuildChangesetsListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BuildStatusPanel.Content"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" MouseDoubleClick="ListView_MouseDoubleClick">
+    <ListView.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Open Changeset" Click="OpenChangeset_Click" />
+            <MenuItem Header="Copy Details" Click="CopyChangeset_Click" />
+            <MenuItem Header="Copy Owners" Click="CopyOwners_Click" />
+            <MenuItem Header="Copy IDs" Click="CopyIds_Click" />
+        </ContextMenu>
+    </ListView.ContextMenu>
+    <ListView.ItemContainerStyle>
+        <Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="ToolTip" Value="{Binding Information}" />
+        </Style>
+    </ListView.ItemContainerStyle>
+    <ListView.View>
+        <GridView>
+            <GridViewColumn Width="60" DisplayMemberBinding="{Binding ChangesetId}">
+                <GridViewColumnHeader Content="ID" ToolTip="Changeset ID" />
+            </GridViewColumn>
+            <GridViewColumn Width="120" DisplayMemberBinding="{Binding CreationDate}">
+                <GridViewColumnHeader Content="Date" ToolTip="Time checked in" />
+            </GridViewColumn>
+            <GridViewColumn Width="120" DisplayMemberBinding="{Binding Owner}">
+                <GridViewColumnHeader Content="Owner" ToolTip="Person who checked it in" />
+            </GridViewColumn>
+            <GridViewColumn Width="300" DisplayMemberBinding="{Binding Comment}">
+                <GridViewColumnHeader Content="Comment" ToolTip="The checkin comment" />
+            </GridViewColumn>
+            <GridViewColumn Width="200" DisplayMemberBinding="{Binding PolicyOverrideComment}">
+                <GridViewColumnHeader Content="Policy Override Comment" ToolTip="The Policy Override comment" />
+            </GridViewColumn>
+        </GridView>
+    </ListView.View>
+
+</ListView>
